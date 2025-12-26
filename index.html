@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'none';
+    style-src 'unsafe-inline';
+    base-uri 'none';
+    frame-ancestors 'none';
+    form-action 'none';
+    upgrade-insecure-requests;
+    block-all-mixed-content;
+  " />
+
+  <meta name="referrer" content="no-referrer" />
+  <meta name="color-scheme" content="light" />
+
+  <title>Пленэр</title>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      background: #7FAAD0;
+      display: grid;
+      place-items: center;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    .btn {
+      max-width: 720px;
+      width: min(92vw, 720px);
+      padding: 18px 22px;
+      background: #fff;
+      color: #000;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 14px;
+      border: 2px solid rgba(0,0,0,0.25);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 600;
+    }
+    .btn:focus-visible {
+      outline: 4px solid rgba(0,0,0,0.35);
+      outline-offset: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <a
+    class="btn"
+    href="https://play.google.com/store/apps/details?id=com.pavlovalexey.pleinair_kmp"
+    rel="noopener noreferrer"
+  >
+    Пленэр. Совместные пленэры, карта, встречи, чаты, портфолио
+  </a>
+</body>
+</html>
