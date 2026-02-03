@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'none';
     style-src 'unsafe-inline';
-    script-src 'sha256-xMk3d9JRcFVjLaM1/m+i+7KMSr7Z2o2Fbe74l6rmqfY=';
+    script-src 'unsafe-inline';
     img-src 'self' data:;
     base-uri 'none';
     frame-ancestors 'none';
@@ -157,6 +157,28 @@
       outline-offset: 4px;
     }
 
+    .links{
+      display: grid;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .linkbtn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 14px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(0,0,0,0.18);
+      background: rgba(255,255,255,0.75);
+      text-decoration: none;
+      color: rgba(11,18,32,0.92);
+      font-weight: 700;
+    }
+    .linkbtn:focus-visible{
+      outline: 4px solid rgba(0,0,0,0.30);
+      outline-offset: 4px;
+    }
+
     .subnote{
       margin: 0;
       font-size: 13px;
@@ -172,6 +194,7 @@
     }
     @media (min-width: 820px){
       .grid{ grid-template-columns: 1fr 1fr; gap: 14px; }
+      .links{ grid-template-columns: 1fr 1fr; }
     }
 
     .panel{
@@ -218,103 +241,98 @@
   </style>
 
   <script>
-(function(){try{
-const KEY='pleinair_lang';
-const SUPPORTED=['ru','en'];
+(function () {
+  const KEY = 'pleinair_lang';
 
-const I18N={
-  ru:{
-    docTitle:'Пленэр — встречи художников',
-    metaDescription:'Пленэр — приложение для художников: встречи на карте, события рядом, поиск по техникам, портфолио и обсуждения в Telegram.',
-    kicker:'Встречи художников • карта • события • общение',
-    h1:'Пленэр — находи своих и собирайся рисовать офлайн',
-    lead:'Приложение для художников и тех, кто любит рисовать. Находи людей с похожим настроем — по городу и любимым материалам. Смотри встречи рядом, присоединяйся или создавай свою, а детали обсуждайте в чате.',
-    btn:'Открыть Google Play и установить «Пленэр»',
-    subnote:'Нажмёшь на кнопку — перейдёшь в Google Play на страницу приложения, откуда можно установить его на Android.',
-    panel1Title:'Что можно делать',
-    panel1List:'<li>Искать художников по регионам и техникам и видеть отметки на карте.</li><li>Просматривать ленту творческих событий, вступать и обсуждать планы.</li><li>Организовывать встречи: место, дата/время, техника, лимит участников, описание.</li><li>Подбирать варианты поблизости — чтобы быстро выйти порисовать без долгих поездок.</li><li>Общаться в Telegram: для каждой встречи создаётся отдельная тема-чаты.</li>',
-    panel2Title:'Почему это удобно',
-    panel2List:'<li>Портфолио работ: стиль и уровень видны по реальным рисункам.</li><li>Фильтры по материалам и техникам: акварель, гуашь, карандаш, масло, маркеры, пастель и др.</li><li>Планы прозрачны: точка на карте, формат и время — без догадок.</li><li>Можно искать не только «пару», а компанию для рисования — вдвоём или группой.</li><li>Лёгкий старт: установи, глянь карту и список встреч, заполни профиль и присоединяйся.</li>',
-    tiny:'Совет: добавь пару работ в портфолио — так проще находить людей со схожим подходом.',
-    footer:'© Пленэр • pleinaira.ru',
-    switchRu:'RU',
-    switchEn:'EN'
-  },
-  en:{
-    docTitle:'Pleinair — meet artists nearby',
-    metaDescription:'Pleinair is an app for artists: meetups on a map, events nearby, technique filters, portfolios, and Telegram discussions.',
-    kicker:'Artist meetups • map • events • chat',
-    h1:'Pleinair — find your people and sketch together offline',
-    lead:'An app for artists and anyone who loves drawing. Discover like-minded people by location and preferred mediums. Join meetups near you or create your own — then coordinate details in a chat.',
-    btn:'Open Google Play to install “Pleinair”',
-    subnote:'Tap the button to open the app page on Google Play and install it on Android.',
-    panel1Title:'What you can do',
-    panel1List:'<li>Find artists by region and techniques, and see pins on the map.</li><li>Browse a feed of creative meetups and events, join in, and discuss plans.</li><li>Create your own meetups: place, date/time, medium, participant limit, and description.</li><li>Pick something nearby so you can draw without long travel time.</li><li>Chat in Telegram: each meetup gets its own discussion thread.</li>',
-    panel2Title:'Why it’s convenient',
-    panel2List:'<li>Portfolios first: you can see style and skill from real artwork.</li><li>Technique filters: watercolor, gouache, pencil, oil, markers, pastel, and more.</li><li>Clear plans: exact map point, time, and format.</li><li>Find a drawing buddy or a whole group — not just “a date”.</li><li>Easy start: install, check the map and meetups list, fill your profile, and join.</li>',
-    tiny:'Tip: add a couple of artworks to your portfolio — it helps others find you faster.',
-    footer:'© Pleinair • pleinaira.ru',
-    switchRu:'RU',
-    switchEn:'EN'
+  const I18N = {
+    ru: {
+      docTitle: 'Пленэр — встречи художников',
+      metaDescription: 'Пленэр — приложение для художников: встречи на карте, события рядом, поиск по техникам, портфолио и обсуждения в Telegram.',
+      kicker: 'Встречи художников • карта • события • общение',
+      h1: 'Пленэр — находи своих и собирайся рисовать офлайн',
+      lead: 'Приложение для художников и тех, кто любит рисовать. Находи людей со схожим настроем — по городу и любимым материалам. Смотри встречи рядом, присоединяйся или создавай свою, а детали обсуждайте в чате.',
+      btn: 'Открыть Google Play и установить «Пленэр»',
+      subnote: 'Нажмёшь на кнопку — перейдёшь в Google Play на страницу приложения, откуда можно установить его на Android.',
+      tg1: 'Telegram-канал проекта',
+      tg2: 'Форум/обсуждения встреч',
+      panel1Title: 'Что можно делать',
+      panel1List: '<li>Искать художников по регионам и техникам и видеть отметки на карте.</li><li>Просматривать ленту творческих событий, вступать и обсуждать планы.</li><li>Организовывать встречи: место, дата/время, техника, лимит участников, описание.</li><li>Подбирать варианты поблизости — чтобы быстро выйти порисовать без долгих поездок.</li><li>Общаться в Telegram: для каждой встречи создаётся отдельная тема для обсуждений.</li>',
+      panel2Title: 'Почему это удобно',
+      panel2List: '<li>Портфолио работ: стиль и уровень видны по реальным рисункам.</li><li>Фильтры по материалам и техникам: акварель, гуашь, карандаш, масло, маркеры, пастель и др.</li><li>Планы прозрачны: точка на карте, формат и время — без догадок.</li><li>Можно искать не только «пару», а компанию для рисования — вдвоём или группой.</li><li>Лёгкий старт: установи, глянь карту и список встреч, заполни профиль и присоединяйся.</li>',
+      tiny: 'Совет: добавь пару работ в портфолио — так проще находить людей со схожим подходом.',
+      footer: '© Пленэр • pleinaira.ru'
+    },
+    en: {
+      docTitle: 'Pleinair — meet artists nearby',
+      metaDescription: 'Pleinair is an app for artists: meetups on a map, events nearby, technique filters, portfolios, and Telegram discussions.',
+      kicker: 'Artist meetups • map • events • chat',
+      h1: 'Pleinair — find your people and sketch together offline',
+      lead: 'An app for artists and anyone who loves drawing. Discover like-minded people by location and preferred mediums. Join meetups near you or create your own — then coordinate details in a chat.',
+      btn: 'Open Google Play to install “Pleinair”',
+      subnote: 'Tap the button to open the app page on Google Play and install it on Android.',
+      tg1: 'Project Telegram channel',
+      tg2: 'Meetups discussion forum',
+      panel1Title: 'What you can do',
+      panel1List: '<li>Find artists by region and technique and see pins on the map.</li><li>Browse a feed of creative meetups and events, join, and discuss plans.</li><li>Create your own meetup: place, date/time, medium, participant limit, and description.</li><li>Pick something nearby so you can draw without long travel time.</li><li>Chat in Telegram: each meetup has its own discussion thread.</li>',
+      panel2Title: 'Why it’s convenient',
+      panel2List: '<li>Portfolios first: see style and skill from real artworks.</li><li>Technique filters: watercolor, gouache, pencil, oil, markers, pastel, and more.</li><li>Clear plans: exact map point, time, and format.</li><li>Find a drawing buddy or a whole group — not just “a date”.</li><li>Easy start: install, check the map and meetups list, fill your profile, and join.</li>',
+      tiny: 'Tip: add a couple of artworks to your portfolio — it helps others find you faster.',
+      footer: '© Pleinair • pleinaira.ru'
+    }
+  };
+
+  function detectLang() {
+    const langs = (navigator.languages && navigator.languages.length)
+      ? navigator.languages
+      : [navigator.language || 'ru'];
+    for (const l of langs) {
+      if (/^ru\b/i.test(l)) return 'ru';
+      if (/^en\b/i.test(l)) return 'en';
+    }
+    return 'ru';
   }
-};
 
-function detect(){
-  const langs=(navigator.languages && navigator.languages.length)
-    ? navigator.languages
-    : [navigator.language || 'ru'];
-  for(const l of langs){
-    if(/^ru\b/i.test(l)) return 'ru';
-    if(/^en\b/i.test(l)) return 'en';
+  function applyLang(lang) {
+    const d = I18N[lang] || I18N.ru;
+
+    document.documentElement.lang = lang;
+    document.documentElement.dataset.lang = lang;
+
+    document.title = d.docTitle;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', d.metaDescription);
+
+    for (const el of document.querySelectorAll('[data-i18n]')) {
+      const k = el.getAttribute('data-i18n');
+      if (d[k] != null) el.textContent = d[k];
+    }
+    for (const el of document.querySelectorAll('[data-i18n-html]')) {
+      const k = el.getAttribute('data-i18n-html');
+      if (d[k] != null) el.innerHTML = d[k];
+    }
+
+    for (const btn of document.querySelectorAll('[data-lang-switch]')) {
+      const target = btn.getAttribute('data-lang-switch');
+      btn.setAttribute('aria-current', target === lang ? 'true' : 'false');
+    }
+
+    try { localStorage.setItem(KEY, lang); } catch (e) {}
   }
-  return 'ru';
-}
 
-function apply(lang){
-  const dict=I18N[lang] || I18N.ru;
+  document.addEventListener('DOMContentLoaded', function () {
+    let lang = null;
+    try { lang = localStorage.getItem(KEY); } catch (e) {}
+    if (lang !== 'ru' && lang !== 'en') lang = detectLang();
 
-  document.documentElement.lang = lang;
-  document.documentElement.dataset.lang = lang;
+    applyLang(lang);
 
-  document.title = dict.docTitle;
-  const metaDesc=document.querySelector('meta[name="description"]');
-  if(metaDesc && dict.metaDescription){ metaDesc.setAttribute('content', dict.metaDescription); }
-
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.getAttribute('data-i18n');
-    const v=dict[k];
-    if(v!=null) el.textContent=v;
+    for (const btn of document.querySelectorAll('[data-lang-switch]')) {
+      btn.addEventListener('click', function () {
+        applyLang(btn.getAttribute('data-lang-switch'));
+      });
+    }
   });
-
-  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
-    const k=el.getAttribute('data-i18n-html');
-    const v=dict[k];
-    if(v!=null) el.innerHTML=v;
-  });
-
-  document.querySelectorAll('[data-lang-switch]').forEach(el=>{
-    const target=el.getAttribute('data-lang-switch');
-    el.setAttribute('aria-current', target===lang ? 'true' : 'false');
-  });
-
-  try{ localStorage.setItem(KEY, lang); }catch(e){}
-}
-
-let lang=null;
-try{ lang=localStorage.getItem(KEY); }catch(e){}
-if(!lang || !SUPPORTED.includes(lang)) lang=detect();
-
-window.__setLang = apply;
-
-document.addEventListener('DOMContentLoaded', function(){
-  apply(lang);
-  document.querySelectorAll('[data-lang-switch]').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      apply(btn.getAttribute('data-lang-switch'));
-    });
-  });
-});
-}catch(e){}})();
+})();
   </script>
 </head>
 
@@ -327,26 +345,40 @@ document.addEventListener('DOMContentLoaded', function(){
       </nav>
 
       <div class="top">
-        <div class="kicker"><span class="dot" aria-hidden="true"></span> <span data-i18n="kicker">Встречи художников • карта • события • общение</span></div>
+        <div class="kicker">
+          <span class="dot" aria-hidden="true"></span>
+          <span data-i18n="kicker">Встречи художников • карта • события • общение</span>
+        </div>
 
         <h1 data-i18n="h1">Пленэр — находи своих и собирайся рисовать офлайн</h1>
 
         <p class="lead" data-i18n="lead">
-          Приложение для художников и тех, кто любит рисовать. Находи людей с похожим настроем — по городу и любимым материалам.
+          Приложение для художников и тех, кто любит рисовать. Находи людей со схожим настроем — по городу и любимым материалам.
           Смотри встречи рядом, присоединяйся или создавай свою, а детали обсуждайте в чате.
         </p>
 
         <div class="actions">
-          <a
-            class="btn"
-            href="https://play.google.com/store/apps/details?id=com.pavlovalexey.pleinair_kmp"
-            rel="noopener noreferrer"
-          >
+          <a class="btn"
+             href="https://play.google.com/store/apps/details?id=com.pavlovalexey.pleinair_kmp"
+             rel="noopener noreferrer">
             <span data-i18n="btn">Открыть Google Play и установить «Пленэр»</span>
           </a>
+
           <p class="subnote" data-i18n="subnote">
             Нажмёшь на кнопку — перейдёшь в Google Play на страницу приложения, откуда можно установить его на Android.
           </p>
+
+          <div class="links" aria-label="Telegram links">
+            <a class="linkbtn"
+               href="https://t.me/pleinair_app"
+               rel="noopener noreferrer"
+               data-i18n="tg1">Telegram-канал проекта</a>
+
+            <a class="linkbtn"
+               href="https://t.me/plenair_app"
+               rel="noopener noreferrer"
+               data-i18n="tg2">Форум/обсуждения встреч</a>
+          </div>
         </div>
       </div>
 
