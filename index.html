@@ -23,6 +23,10 @@
   <title>Пленэр — встречи художников</title>
   <meta name="description" content="Пленэр — приложение для художников: встречи на карте, события рядом, поиск по техникам, портфолио и обсуждения в Telegram." />
 
+  <!-- Favicon -->
+  <link rel="icon" href="/icon.webp" type="image/webp" />
+  <link rel="icon" href="/icon.webp" />
+
   <style>
     :root{
       --bg: #7FAAD0;
@@ -99,6 +103,30 @@
 
     .top{ display: grid; gap: 12px; padding-top: 34px; }
 
+    .brand{
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 2px;
+    }
+    .logo{
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.12);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+      background: rgba(255,255,255,0.55);
+      object-fit: cover;
+    }
+    .brandname{
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      color: rgba(11,18,32,0.82);
+      margin: 0;
+      line-height: 1.1;
+    }
+
     .kicker{
       display: inline-flex;
       align-items: center;
@@ -134,50 +162,52 @@
 
     .actions{ display: grid; gap: 10px; margin-top: 8px; }
 
-    .btn{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 16px 18px;
-      background: #ffffff;
-      color: #000;
-      text-decoration: none;
-      text-align: center;
-      border-radius: var(--radius2);
-      border: 2px solid rgba(0,0,0,0.20);
-      box-shadow: var(--shadow2);
-      font-size: 17px;
-      line-height: 1.35;
-      font-weight: 750;
-      user-select: none;
-    }
-    .btn:focus-visible{
-      outline: 4px solid rgba(0,0,0,0.35);
-      outline-offset: 4px;
-    }
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 18px;
+  background: var(--bg);
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  border-radius: var(--radius2);
+  border: 2px solid rgba(0,0,0,0.12);
+  box-shadow: var(--shadow2);
+  font-size: 17px;
+  line-height: 1.35;
+  font-weight: 750;
+  user-select: none;
+}
 
-    .links{
-      display: grid;
-      gap: 8px;
-      margin-top: 4px;
-    }
-    .linkbtn{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 14px;
-      border-radius: var(--radius2);
-      border: 1px solid rgba(0,0,0,0.18);
-      background: rgba(255,255,255,0.75);
-      text-decoration: none;
-      color: rgba(11,18,32,0.92);
-      font-weight: 700;
-    }
-    .linkbtn:focus-visible{
-      outline: 4px solid rgba(0,0,0,0.30);
-      outline-offset: 4px;
-    }
+.linkbtn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 14px;
+  background: var(--bg);
+  color: #fff;
+  border-radius: var(--radius2);
+  border: 1px solid rgba(0,0,0,0.12);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* Лёгкая реакция на наведение/нажатие */
+.btn:hover, .linkbtn:hover{
+  filter: brightness(0.96);
+}
+
+.btn:active, .linkbtn:active{
+  filter: brightness(0.92);
+}
+
+/* Чтобы фокус был заметным на голубом */
+.btn:focus-visible, .linkbtn:focus-visible{
+  outline: 4px solid rgba(0,0,0,0.30);
+  outline-offset: 4px;
+}
 
     .subnote{
       margin: 0;
@@ -248,6 +278,7 @@
     ru: {
       docTitle: 'Пленэр — встречи художников',
       metaDescription: 'Пленэр — приложение для художников: встречи на карте, события рядом, поиск по техникам, портфолио и обсуждения в Telegram.',
+      brand: 'Пленэр',
       kicker: 'Встречи художников • карта • события • общение',
       h1: 'Пленэр — находи своих и собирайся рисовать офлайн',
       lead: 'Приложение для художников и тех, кто любит рисовать. Находи людей со схожим настроем — по городу и любимым материалам. Смотри встречи рядом, присоединяйся или создавай свою, а детали обсуждайте в чате.',
@@ -263,12 +294,13 @@
       footer: '© Пленэр • pleinaira.ru'
     },
     en: {
-      docTitle: 'Pleinair — meet artists nearby',
-      metaDescription: 'Pleinair is an app for artists: meetups on a map, events nearby, technique filters, portfolios, and Telegram discussions.',
+      docTitle: 'PleinAir — meet artists nearby',
+      metaDescription: 'PleinAir is an app for artists: meetups on a map, events nearby, technique filters, portfolios, and Telegram discussions.',
+      brand: 'PleinAir',
       kicker: 'Artist meetups • map • events • chat',
-      h1: 'Pleinair — find your people and sketch together offline',
+      h1: 'PleinAir — find your people and sketch together offline',
       lead: 'An app for artists and anyone who loves drawing. Discover like-minded people by location and preferred mediums. Join meetups near you or create your own — then coordinate details in a chat.',
-      btn: 'Open Google Play to install “Pleinair”',
+      btn: 'Open Google Play to install “PleinAir”',
       subnote: 'Tap the button to open the app page on Google Play and install it on Android.',
       tg1: 'Project Telegram channel',
       tg2: 'Meetups discussion forum',
@@ -277,7 +309,7 @@
       panel2Title: 'Why it’s convenient',
       panel2List: '<li>Portfolios first: see style and skill from real artworks.</li><li>Technique filters: watercolor, gouache, pencil, oil, markers, pastel, and more.</li><li>Clear plans: exact map point, time, and format.</li><li>Find a drawing buddy or a whole group — not just “a date”.</li><li>Easy start: install, check the map and meetups list, fill your profile, and join.</li>',
       tiny: 'Tip: add a couple of artworks to your portfolio — it helps others find you faster.',
-      footer: '© Pleinair • pleinaira.ru'
+      footer: '© PleinAir • pleinaira.ru'
     }
   };
 
@@ -285,6 +317,7 @@
     const langs = (navigator.languages && navigator.languages.length)
       ? navigator.languages
       : [navigator.language || 'ru'];
+
     for (const l of langs) {
       if (/^ru\b/i.test(l)) return 'ru';
       if (/^en\b/i.test(l)) return 'en';
@@ -338,13 +371,18 @@
 
 <body>
   <main class="wrap">
-    <section class="card" aria-label="Pleinair landing">
+    <section class="card" aria-label="PleinAir landing">
       <nav class="langbar" aria-label="Language switch">
         <button class="langbtn" type="button" data-lang-switch="ru" aria-current="true">RU</button>
         <button class="langbtn" type="button" data-lang-switch="en" aria-current="false">EN</button>
       </nav>
 
       <div class="top">
+        <div class="brand" aria-label="Brand">
+          <img class="logo" src="/icon.webp" alt="PleinAir icon" width="56" height="56" />
+          <p class="brandname" data-i18n="brand">Пленэр</p>
+        </div>
+
         <div class="kicker">
           <span class="dot" aria-hidden="true"></span>
           <span data-i18n="kicker">Встречи художников • карта • события • общение</span>
